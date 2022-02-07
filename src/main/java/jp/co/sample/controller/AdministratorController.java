@@ -58,6 +58,7 @@ public class AdministratorController {
 	public String login(LoginForm form,Model model) {
 		Administrator administratorName = administratorService.login(form.getMailAddress(), form.getPassword());
 		if(administratorName == null) {
+			session.setAttribute("administratorName", administratorName);
 			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
 			return toLogin();
 		} else {
