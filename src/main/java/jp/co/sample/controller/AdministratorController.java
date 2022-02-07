@@ -59,7 +59,7 @@ public class AdministratorController {
 		Administrator administratorName = administratorService.login(form.getMailAddress(), form.getPassword());
 		if(administratorName == null) {
 			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
-			return "administrator/login";
+			return toLogin();
 		} else {
 			session.setAttribute("administratorName", administratorName);
 			return "forward:/employee/showList";
