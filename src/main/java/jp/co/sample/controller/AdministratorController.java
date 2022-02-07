@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.form.LoginForm;
@@ -51,6 +52,18 @@ public class AdministratorController {
 	@RequestMapping("/")
 	public String toLogin() {
 		return "administrator/login";
+	}
+	
+	@RequestMapping("/login")
+	public String login(LoginForm form,Model model) {
+		Administrator administratorName = administratorService.login(form.getMailAddress(), form.getPassword());
+		if(administratorName == null) {
+			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
+			return "administrator/login";
+		} else {
+			session.setAttribute("administratorName", administratorName);
+			return "forward:/employee/showList";
+		}
 	}
 
 }
