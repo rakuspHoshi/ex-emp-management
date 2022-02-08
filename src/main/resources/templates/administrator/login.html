@@ -33,14 +33,11 @@
 					<form method="post" action="../employee/list.html" th:action="@{/login}" th:object="${loginForm}">
 						<fieldset>
 							<legend>ログイン</legend>
-							<th:block th:if="${session.administratorName == null}">
-							<div class="form-group" >
+							<div class="form-group" th:if="${errorMessage != null}">
 								<div class="alert alert-danger"  th:text="${errorMessage}">
 									<p>メールアドレスまたはパスワードが間違っています</p>
 								</div>
 							</div>
-							</th:block>
-							
 							<div class="form-group">
 								<label for="mailAddress">メールアドレス:</label> <input type="text"
 									name="mailAddress" id="mailAddress" class="form-control"
