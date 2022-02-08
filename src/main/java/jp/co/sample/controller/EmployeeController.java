@@ -38,6 +38,12 @@ public class EmployeeController {
 		return "employee/detail.html";		
 	}
 	
-	
+	@RequestMapping("/update")
+	public String update(String id, String dependentsCount) {
+		Employee employee = employeeService.showDetail(Integer.parseInt(id));
+		employee.setDependentsCount(Integer.parseInt(dependentsCount));
+		employeeService.update(employee);
+		return "redirect:/employee/showList";
+	}
 	
 }
