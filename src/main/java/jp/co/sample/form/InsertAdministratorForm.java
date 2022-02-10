@@ -1,12 +1,24 @@
 package jp.co.sample.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 public class InsertAdministratorForm {
+	
+	@NotBlank(message="名前を入力してください")
 	private String name;
+	
+	@NotBlank(message="メールアドレスを入力してください")
+	@Email(message="メールアドレスが不正です")
 	private String mailAddress;
+	
+	@NotBlank(message="パスワードを入力してください")
 	private String password;
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
