@@ -73,4 +73,5 @@ public class AdministratorController {
 		return "redirect:/";
 	}
 
+
 }
